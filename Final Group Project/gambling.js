@@ -29,7 +29,7 @@ app.get("/", (req,res) => {
     res.render("index");
 });
 
-app.post("/signUpProcessing", (req,res) => {
+app.get("/signUpProcessing", (req,res) => {
     (async () => {
 		const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 		try {
@@ -88,7 +88,7 @@ app.post("/signUpProcessing", (req,res) => {
 	})();
 });
 
-app.post("/loginProcessing", (req,res) => {
+app.get("/loginProcessing", (req,res) => {
     (async () => {
 		const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 		try {
