@@ -12,7 +12,7 @@ const axios = require('axios');
 const databaseAndCollection = { db: process.env.MONGO_DB_NAME, collection: process.env.MONGO_COLLECTION };
 const { MongoClient, ServerApiVersion } = require('mongodb');
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set("views", path.resolve(__dirname, "templates"));
 
