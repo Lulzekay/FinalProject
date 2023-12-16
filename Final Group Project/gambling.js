@@ -20,7 +20,7 @@ app.set("view engine", "ejs");
 
 // make sure port number is specified
 
-const portNumber = process.argv[2];
+const portNumber = process.env.PORT || 3000;
 
 console.log(`Web server started and running at http://localhost:${portNumber}`);
 
