@@ -29,10 +29,6 @@ app.get("/", (req,res) => {
     res.render("index");
 });
 
-app.post("/signUpProcessing", (req, res) => {
-    res.send("SignUp Processing hit");
-});
-
 
 app.post("/signUpProcessing", (req,res) => {
     (async () => {
