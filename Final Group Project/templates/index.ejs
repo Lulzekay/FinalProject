@@ -60,7 +60,7 @@
   <script>
     document.querySelector("#signUp").addEventListener("click", function () {
       let signUpForm = `
-                <form id="signupForm" action="/signUpProcessing" method="get">
+                <form id="signupForm" action="/signUpProcessing" method="post">
                     <label for="name">Name:</label>
                     <input type="text" name="name" required><br>
                     <label for="email">Email:</label>
@@ -91,7 +91,7 @@
 
     document.querySelector("#login").addEventListener("click", function () {
       let loginForm = `
-                <form id="loginForm" action="/loginProcessing" method="get">
+                <form id="loginForm" action="/loginProcessing" method="post">
                     <label for="loginEmail">Email:</label>
                     <input type="email" name="loginEmail" required><br>
                     <label for="loginPassword">Password:</label>
