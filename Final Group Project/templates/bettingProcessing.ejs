@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<body>
+    <%- email %>
+    <div>Balance before bet: <%- balance %></div>
+    <div>Your bet: <%- betAmount %></div>
+    <br>
+    <p><%- team1 %> <%- team1Score %> - <%- team2 %> <%- team2Score %></p>
+    <pre id="message"></pre>
+    <a href="/">Home</a>
+
+    <script>
+        let email = document.querySelector("#email").value;
+        let balance = Number(document.querySelector("#balance").value);
+        let betAmount = Number(document.querySelector("#betAmount").innerHTML);
+        let team1 = document.querySelector("#team1").innerHTML;
+        let team1Score = Number(document.querySelector("#team1Score").innerHTML);
+        let team2 = document.querySelector("#team2").innerHTML;
+        let team2Score = Number(document.querySelector("#team2Score").innerHTML);
+
+        let message = "";
+        if (team1Score > team2Score) {
+            message = `You've profited $${betAmount} dollars\nGood job! Now go touch grass.`;
+            localStorage.setItem(email, `${balance + betAmount}`);
+        } else if (team1Score <= team2Score) {
+            message = `You've lost your $${betAmount} dollars\nYou're cooked. Maybe next time.`;
+            localStorage.setItem(email, `${balance - betAmount}`);
+        }
+
+        document.querySelector("#message").innerHTML = message;
+    </script>
+</body>
+</html>

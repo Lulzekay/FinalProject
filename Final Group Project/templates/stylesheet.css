@@ -1,0 +1,40 @@
+html{
+    background-color: rgb(72, 128, 225);
+    font-size:14px;  
+    height: 62.5rem;  
+    width: 55rem;  
+    margin-left: auto;  
+    margin-right: auto; 
+    font-family: Arial, Helvetica, sans-serif;     
+}
+
+h1{
+    text-align: center;
+    color: white ;
+}
+
+#login_signup{
+ 
+    width: 25%; 
+    height:fit-content; 
+    border: 2px solid rgb(23, 35, 161); 
+    background-color: rgba(253, 253, 253, 0.8); 
+    position:absolute; 
+    left: 39%; 
+    top: 27%; 
+   
+}
+
+label{
+    margin-left: 5px;
+}
+
+input{
+    margin: 5px;
+}
+
+#buttons{
+    position:absolute;
+    left: 46%; 
+    top: 15%; 
+}

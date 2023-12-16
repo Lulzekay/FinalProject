@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PhanDuel</title>
+  <style>
+    html {
+      background-color: rgb(72, 128, 225);
+      font-size: 14px;
+      height: 62.5rem;
+      width: 55rem;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      color: white;
+    }
+
+    #login_signup {
+
+      width: 25%;
+      height: fit-content;
+      border: 2px solid rgb(23, 35, 161);
+      background-color: rgba(253, 253, 253, 0.8);
+      position: absolute;
+      left: 39%;
+      top: 27%;
+
+    }
+
+    label {
+      margin-left: 5px;
+    }
+
+    input {
+      margin: 5px;
+    }
+
+    #buttons {
+      position: absolute;
+      left: 46%;
+      top: 15%;
+    }
+  </style>
+  <script src='https://www.google.com/recaptcha/api.js' async defer></script>
+</head>
+
+<body>
+  <h1>PhanDuel</h1>
+  <div id="buttons"><input type="button" value="Sign up" id="signUp" />
+    <input type="button" value="Login" id="login" />
+  </div>
+  <div id="login_signup"></div>
+
+  <script>
+    document.querySelector("#signUp").addEventListener("click", function () {
+      let signUpForm = `
+                <form id="signupForm" action="/signUpProcessing" method="post">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required><br>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+                    <label for="password">Password:</label>
+                    <input type="password" name="password" required><br>
+                    <label for="deposit">Deposit Amount:</label>
+                    <input type="number" id="deposit" name="deposit" required><br>
+                    <div class="g-recaptcha" data-sitekey="6LfDVTMpAAAAAJzXBrblnqLPhL-EDSxoff4pCDPt"></div>
+                    <input type="submit" value="Submit">
+                </form>
+            `;
+
+      document.querySelector("#login_signup").innerHTML = signUpForm;
+      grecaptcha.render(document.querySelector('.g-recaptcha'), {
+        'sitekey' : '6LfDVTMpAAAAAJzXBrblnqLPhL-EDSxoff4pCDPt' });
+
+      
+      document
+        .querySelector("#signupForm")
+        .addEventListener("submit", function (event) {
+          let email = document.querySelector("#email").value;
+          let deposit = document.querySelector("#deposit").value;
+          localStorage.setItem(email, deposit);
+          
+        });
+    });
+
+    document.querySelector("#login").addEventListener("click", function () {
+      let loginForm = `
+                <form id="loginForm" action="/loginProcessing" method="post">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" name="loginEmail" required><br>
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" name="loginPassword" required><br>
+                    <input type="submit" value="Login">
+                </form>
+            `;
+
+      document.querySelector("#login_signup").innerHTML = loginForm;
+
+    });
+  </script>
+</body>
+
+</html>

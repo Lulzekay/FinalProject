@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhanDuel NBA Games Today</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgb(212, 26, 26)
+        }
+
+        #balance {
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .bet-form {
+            margin-top: 20px;
+        }
+
+        .bet-form input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NBA Games Today</h1>
+
+    <form action="/bettingProcessing" method="get">
+        <div><%- email %></div>
+        <div>Total Balance: $<span id="num"></span></span></div>
+        <table id="gamesTable">
+            <thead>
+                <tr>
+                    <th>Game</th>
+                    <th>Start Time</th>
+                    <th>Arena</th>
+                    <th>Visitor Team</th>
+                    <th>Home Team</th>
+                    <th>Bet</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2023-12-07 Time 10:00pm ET</td>
+                    <td>Little Caesars Arena</td>
+                    <td>Pistons</td>
+                    <td>Hawks</td>
+                    <td>
+                        <input type="radio" name="betGame" value="Pistons"> Home Team
+                        <input type="radio" name="betGame" value="Hawks"> Visitor Team
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2023-12-07 11:00pm ET</td>
+                    <td>Chase Center</td>
+                    <td>Warriors</td>
+                    <td>Cavs</td>
+                    <td>
+                        <input type="radio" name="betGame" value="Warriors"> Home Team
+                        <input type="radio" name="betGame" value="Cavs"> Visitor Team
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    
+        
+        <div class="bet-form">
+            <label for="betAmount">Enter Bet Amount: $</label>
+            <input type="number" name="betAmount" id="betAmount" min="0" step="0.01" placeholder="Enter amount">
+            <input type="submit" value="Place Bet">
+        </div>
+    </form>
+
+    <script>
+        document.querySelector("#num").innerHTML = `<input id="balance" type="number" name="balance" readonly value="${localStorage.getItem(document.querySelector("#email").value)}">`;
+
+        window.onsubmit = () => {
+            let selectedGame = document.querySelector('input[name="betGame"]:checked');
+            let betAmount = document.getElementById('betAmount').value;
+
+            if (selectedGame && betAmount && Number(document.querySelector("#balance").value) >= Number(betAmount) ) {
+                return true;
+            } else {
+                alert("Please select a game and a valid bet amount.");
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
+
